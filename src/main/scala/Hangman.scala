@@ -39,7 +39,7 @@ package object hm {
 
   // Generate a new guess list based on letter, current matches and actual word.
   def applyGuess(letter : Char, guesslist : List[Char], hanglist : List[Char]) : List[Char] = {
-    guesslist.zip(hanglist).map({case(g,h) => if (letter == h) h else g})
+    guesslist.zip(hanglist).map({ case (g, h) => if (letter == h) h else g })
   }
 }
 
@@ -47,7 +47,7 @@ package object hm {
 // The Hangman application.
 ///
 
-object Hangman extends App {
+@main def Hangman(args: String*): Unit = {
 
   // Cheery intro to the Hangman game.
   println("Welcome to the Hangman word guessing game.")
@@ -106,6 +106,7 @@ object Hangman extends App {
       }
 
       val line = scala.io.StdIn.readLine(fmtinput.format(hm.wordJoin(guesslist), guesses)).toUpperCase
+//    println(line)
       line match {
         case "NEW"  => guesses = 1 ; checkGuess()
         case "EXIT" => fexit = true

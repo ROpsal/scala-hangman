@@ -2,6 +2,8 @@ name := "Hangman"
 
 version := "1.0.0"
 
-scalaVersion := "2.12.1"
+scalaVersion := "3.2.2"
 
-scalaVersion in ThisBuild := "2.12.1"
+//fork in run := true
+//connectInput in run := true
+//outputStrategy := Some(StdoutOutput)
