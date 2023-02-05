@@ -66,9 +66,7 @@ object State {
     // Input letter assumed to be uppercase.
     import Status.*, Guess.applyGuess
     def nextGuess: Char => (Status, Guess) = { letter =>
-      if (guessSet.contains(letter)) {
-        (NoChange, this)
-      } else {
+      if guessSet.contains(letter) then (NoChange, this) else {
         val `match` = this.hangList.contains(letter)
         val newGuess = this.copy(
           guessList = if `match` then letter.applyGuess(this.guessList, this.hangList) else this.guessList,
