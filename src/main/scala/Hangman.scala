@@ -1,7 +1,12 @@
 /**
  * Author: Richard B. Opsal, Ph.D.
- * Update: 2023/02/04
+ * Update: 2023/02/07
 **/
+
+
+import scala.annotation.tailrec
+import java.text.Collator
+import java.util.Locale
 
 
 ///
@@ -10,31 +15,60 @@
 
 object Helpers {
 
+  case class WordEntry(word: String, definition: Option[String])
+  extension (line: String) def toWordEntry: Option[WordEntry] = {
+    line.split('|') map (_.trim) match {
+      case Array(word) if word.isEmpty => None
+      case Array(word) if word.startsWith("#") => None
+      case Array(word, value) => Some(WordEntry(word, Some(value)))
+      case Array(word) => Some(WordEntry(word, None))
+    }
+  }
+
   // Generate list of possible words from passed file.
   // Empty list means nothing was loaded.
-  def wordList(fname : String = "dictionaryWords.txt") : List[String] = {
+  def wordList(fname : String = "dictionaryWords.txt") : List[WordEntry] = {
     scala.util.Using(io.Source.fromFile( fname )){ source =>
       source.getLines.toList
-    }.fold(_ => List.empty[String], identity)
+    }.fold(_ => List.empty[Option[WordEntry]], lines => lines.map(_.toWordEntry)).flatten
   }
 
   // Return a random word from the passed list.
-  extension (words : List[String]) def randomWord : String = {
+  extension (words: List[WordEntry]) def randomWord : WordEntry = {
     words( scala.util.Random.nextInt(words.length) )
   }
 
-  // Split the word into individual letters plus upper case letters.
-  extension (word : String) def splitWordToUpper : List[Char] = {
-    word.toUpperCase.toList
-  }
+  // Split the word into individual letters.
+  extension (word: String) def splitWord : List[Char] = word.toList
 
   // Join the list of characters together with a space in-between.
-  extension (wordlist : List[Char]) def joinWord : String = {
-    wordlist.mkString(" ")
+  extension (wordlist: List[Char]) def joinWord : String = wordlist.mkString(" ")
+
+  // French letters supported by the Hangman application.
+  private val accentSet  : Set[Char] = Set('ç', 'é', 'â', 'ê', 'î', 'ô', 'û', 'à', 'è', 'ù', 'ë', 'ï', 'ü')
+  private val ligatureSet: Set[Char] = Set('œ', 'æ')
+  private val alphaSet   : Set[Char] = ('a' to 'z').toSet
+  val frenchSet : Set[Char] = accentSet ++ alphaSet ++ ligatureSet
+
+  // Compares characters without regard to case or French accent marks.
+  val frCollator = Collator.getInstance(Locale.FRENCH)
+  frCollator.setStrength(Collator.PRIMARY)
+  extension (l: Char) infix def =:= (r: Char): Boolean = 0 == frCollator.compare(l.toString, r.toString)
+  extension (l: String) infix def =:= (r: String): Boolean = 0 == frCollator.compare(l, r)
+
+  // Tests whether list contains a given character ignoring character case and accents.
+  extension (letters: List[Char]) @tailrec def containsMatchable(letter: Char): Boolean = {
+    letters match {
+      case Nil => false
+      case head :: _ if head == letter => true
+      case head :: _ if head =:= letter => true
+      case _ :: tail => tail.containsMatchable(letter)
+    }
   }
 
-  // Set of upper case letters.
-  val alphaSet : Set[Char] = ('A' to 'Z').toSet
+  extension (letters: Set[Char]) def containsMatchable(letter: Char): Boolean = {
+    if letters.contains(letter) then true else letters.toList.containsMatchable(letter)
+  }
 }
 
 
@@ -45,7 +79,7 @@ object Helpers {
 object State {
   import Helpers.*
 
-  case class Words(hangWord: String, words: List[String]) {
+  case class Words(hangWord: WordEntry, words: List[WordEntry]) {
     def nextWord: Words = {
       val newHangWord = this.words.randomWord
       Words(newHangWord, this.words.filterNot(_ == newHangWord))
@@ -63,13 +97,12 @@ object State {
 
   private val maxGuesses = 6
   case class Guess(hangList: List[Char], guessList: List[Char], guessSet: Set[Char], guesses: Int) {
-    // Input letter assumed to be uppercase.
     import Status.*, Guess.applyGuess
     def nextGuess: Char => (Status, Guess) = { letter =>
-      if guessSet.contains(letter) then (NoChange, this) else {
-        val `match` = this.hangList.contains(letter)
+      if guessSet.containsMatchable(letter) then (NoChange, this) else {
+        val `match` = this.hangList.containsMatchable(letter)
         val newGuess = this.copy(
-          guessList = if `match` then letter.applyGuess(this.guessList, this.hangList) else this.guessList,
+          guessList = if `match` then letter.applyGuess(this.hangList, this.guessList) else this.guessList,
           guessSet = this.guessSet + letter,
           guesses = if `match` then this.guesses else if 0 < this.guesses then this.guesses - 1 else 0
         )
@@ -88,14 +121,28 @@ object State {
   }
 
   object Guess {
-    extension (letter: Char) def applyGuess(guessList: List[Char], hangList: List[Char]): List[Char] = {
-      guessList.zip(hangList).map((g, h) => if (letter == h) h else g)
+    extension (letter: Char) def applyGuess(hangList: List[Char], guessList: List[Char]): List[Char] = {
+      guessList.zip(hangList).map((g, h) => if (letter =:= h) h else g)
     }
 
+    extension (letters: List[Char]) private def prefillNons(hangList: List[Char], guessList: List[Char]): List[Char] = {
+      letters match {
+        case Nil => guessList
+        case letter::rest => rest.prefillNons(hangList, letter.applyGuess(hangList, guessList))
+      }
+    }
+
+    private val whitespace  = List('\u0009', '\u0020')
+    private val ligatures   = List('\u0153', '\u00E6')
+    private val apostrophes = List('\u0027', '\u2019')
+    private val separators  = List(',', '.')
+    private val prefills = whitespace ++ ligatures ++ apostrophes ++ separators
     val nextRound: Words => Guess = words => {
+      val hangList = words.hangWord.word.splitWord
+      val guessList = prefills.prefillNons(hangList, List.fill[Char](hangList.length)('_'))
       Guess(
-        hangList = words.hangWord.splitWordToUpper,
-        guessList = List.fill[Char](words.hangWord.length)('_'),
+        hangList = hangList,
+        guessList = guessList,
         guessSet = Set.empty[Char],
         guesses = maxGuesses
       )
@@ -124,16 +171,22 @@ object State {
     println()
   }
 
-  def enterGameR(words: Words, winsAndLosses: WinsAndLosses): Unit = {
-    def playGameR(guess: Guess): (Boolean, WinsAndLosses) = {
-      readLine(fmtinput.format(guess.guessList.joinWord, guess.guesses)).toUpperCase match {
-        case "NEW" => (false, guess.finishGuess(winsAndLosses))
-        case "EXIT" => (true, guess.finishGuess(winsAndLosses))
-        case str: String if str.isEmpty => playGameR(guess)
+  @tailrec def enterGameR(words: Words, winsAndLosses: WinsAndLosses): Unit = {
+    words.hangWord.definition.fold(())(definition => println(s"""\tUn indice -> "$definition""""))
+    @tailrec def playGameR(guess: Guess): (Boolean, WinsAndLosses) = {
+      readLine(fmtinput.format(guess.guessList.joinWord, guess.guesses)) match {
+        case s: String if s.isEmpty => playGameR(guess)
+        case s: String if s =:= "New" => (false, guess.finishGuess(winsAndLosses))
+        case s: String if s =:= "Exit" => (true, guess.finishGuess(winsAndLosses))
         case entry: String => {
-          val letter = entry.head
-          if ((1 < entry.length) || !alphaSet.contains(letter)) {
-            println(s"Not a valid guess -> $entry")
+          val (cnt, letter) = (1, entry.head)
+//        val (cnt, letter) = entry match {
+//          case oe if oe =:= "oe" => (2, '\u0153')
+//          case ae if ae =:= "ae" => (2, '\u00E6')
+//          case entry => (1, entry.head)
+//        }
+          if ((cnt < entry.length) || !frenchSet.contains(letter.toLower)) {
+            println(s"\tSorry, not a valid entry -> $entry")
             playGameR(guess)
 
           } else {
@@ -157,16 +210,16 @@ object State {
     }
 
     val (fDone, newWinsAndLosses) = playGameR(Guess.nextRound(words))
-    println()
     if !fDone then enterGameR(words.nextWord, newWinsAndLosses)
   }
 
   // List of words to guess from.
   val fname = if args.isEmpty then "src/resources/dictionaryWords.txt" else args(0)
-  val words = Words("HANGMAN", Helpers.wordList(fname)).nextWord
+  val words = Words(WordEntry("HANGMAN", None), Helpers.wordList(fname)).nextWord
 
   println("Welcome to the Hangman word guessing game.")
   println("Type 'Exit' to leave the game, 'New' for a new game.")
+//println("Type 'oe' for \u0153.  Type 'ae' for \u00E6.")
   println("Good luck!\n")
   enterGameR(words, WinsAndLosses())
   println("\nThank you for playing Scala Hangman!")

@@ -5,7 +5,6 @@ ThisBuild / scalacOptions ++= Seq(
   "-Xfatal-warnings",
   "-deprecation",
   "-explain",
-  "-feature",
   "-no-indent",
   "-unchecked",
   "-language:implicitConversions",
