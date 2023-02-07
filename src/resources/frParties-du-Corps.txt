@@ -1,58 +1,142 @@
 # Parties de la tête.
-la bouche           | the mouth
-les cheveux         | (m) the hair
-les cheveux courts  | (m) short hair
-des cheveux bouclés | (m) curly hair
-le cou              | the neck
-jusqu’au cou        | up to one’s neck
-la dent             | the tooth
-le front            | the forehead
-ma gorge            | my throat
-la joue	            | the cheek
-la langue           | the tongue
-la lèvre            | the lip
-la mâchoire         | the jaw
-le menton           | the chin
-le nez              | the nose
-la nuque            | nape of the neck
-sur la nuque        | on the neck
-l’œil               | (m) the eye
-les yeux            | (m) the eyes
-l’oreille           | (f) the ear
-le sourcil          | the eyebrow
-la tête             | the head
-le visage           | the face
+la barbe                | beard
+la bouche               | mouth
+la chevelure            | hair, singular, on head
+les cheveux             | hair, plural, on head (m)
+les cheveux courts      | short hair (m)
+des cheveux bouclés     | curly hair (m)
+le cil                  | eyelash
+les cordes vocales      | vocal cords (f)
+le cou                  | neck
+jusqu'au cou            | up to one's neck
+la coude                | elbow
+la dent                 | tooth
+la figure               | face
+le front                | the forehead
+ma gorge                | my throat
+la joue                 | cheek
+la langue               | tongue
+la lèvre                | lip
+la mâchoire             | jaw
+le menton               | chin
+la moustache            | mustache
+la narine               | nostril
+le nez                  | nose
+la nuque                | nape, back of neck
+sur la nuque            | on the neck
+l'œil                   | the eye (m)
+l'oreille               | the ear (f)
+le lobe de l'oreille    | earlobe
+la paupière             | eyelid
+la pomme d'Adam         | Adam's apple
+le sourcil              | eyebrow
+la tempe                | temple
+la tête                 | head
+le visage               | face
+les yeux                | the eyes (m)
 
 # Le milieu du corps complet.
-le bras             | the arm
-le cœur             | the heart
-le coude            | the elbow
-le derrière         | colloquial bottom, bum, behind
-le doigt            | the finger
-le dos              | the back
-l’épaule            | (f) the shoulder
-l’estomac           | (m) the stomach
-ma main             | my hand
-ses mamelons        | (m) her/his nipples
-ma nombril          | my belly button
-la paume            | the palm
-le poignet          | the wrist
-la poitrine         | the chest
-le pouce            | the thumb
-le ventre           | the belly
-donner le sein      | to breastfeed
+l'abdomen               | abdomen (m)
+l'aisselle              | armpit (f)
+l'avant-bras            | forearm (m)
+le bras                 | arm
+le buste                | torso
+le cœur                 | heart
+le coude                | the elbow
+le derrière             | colloquial bottom, bum, behind
+le doigt                | finger
+le petit doigt          | pinky finger
+le dos                  | back
+l'épaule                | shoulder (f)
+l'index                 | index finger (m)
+ma main                 | my hand
+le mamelon              | nipple
+ses mamelons            | her/his nipples (m)
+ma nombril              | my belly button
+l'ongle                 | fingernail (m)
+la paume                | palm
+le poignet              | wrist
+la poitrine             | chest
+le poing                | fist
+le poil                 | hair, singular, not on head
+les poils               | hair, plural, not on head
+le pouce                | thumb
+le sein                 | breast
+le bout de sein         | nipple
+la taille               | waist
+le téton                | nipple
+le torse                | torso
+le ventre               | belly
+donner le sein          | to breastfeed
 
 # Du haut de tes cuisses à ton petit orteil.
-la cheville         | the ankle
-la cuisse           | the thigh
-le doigt de pied    | the toe
-la fesse            | the buttock
-le genou            | the knee
-le gros orteil      | the big toe
-la hanche           | the hip
-la jambe            | the leg
-l’ongle de pied     | the toenail
-l’orteil            | (m) the toe
-le pied             | the foot
-le talon            | the heel
-le tibia            | the shin
+la cheville             | the ankle
+la cuisse               | thigh
+le doigt de pied        | the toe
+la fesse                | buttock
+les fesses              | buttocks (f)
+le genou                | knee
+le gros orteil          | the big toe
+le gros doigt de pied   | big toe
+la hanche               | hip
+la jambe                | leg
+le mollet               | calf
+l'ongle de pied         | the toenail
+mon petit orteil        | my little toe
+l'orteil                | the toe (m)
+le pied                 | foot
+le talon                | heel
+le tibia                | shin
+
+## Parties internes du corps.
+  l'aine                  | groin (f)
+# l'amygdale              | tonsil (f)
+# l'anus                  | anus (m)
+# l'appendice             | appendix (m)
+# l'artère                | artery (f)
+# l'articulation          | knuckle (f)
+# l'articulation du doigt | knuckle (f)
+# le bassin               | pelvis
+# la cage thoracique      | rib cage
+  le cerveau              | brain
+# la clavicule            | collarbone
+# le coccyx               | coccyx
+# le col de l'utérus      | cervix
+# la colonne vertébrale   | spine
+  le corps                | body
+# le côlon                | colon
+# la côte                 | rib
+# l'éstomac               | stomach (m)
+  le foie                 | liver
+# les gencives            | gums (f)
+# la glande               | gland
+# l'intestins             | intestines (m)
+# le gros intestin        | large intestine
+# l'intestin grêle        | small intestine (m)
+# l'ischio-jambier        | hamstring (m)
+# le muscle               | muscle
+# le nerf                 | nerve
+# le pancréas             | pancreas
+# l'œsophage              | esophagus (m)
+  l'os                    | bone (m)
+  beaucoup d'os           | many bones (m)
+# l'omoplate              | shoulder blade (f)
+# l'ovaire                | ovary (m)
+# le pore                 | pore
+  la peau                 | skin
+  le poumon               | lung
+# le pénis                | penis
+# le rectum               | rectum
+# le rein                 | kidney
+  le sang                 | blood
+# le scrotum              | scrotum
+# le sternum              | sternum
+# le tendon               | tendon
+# le testicule            | testicle
+# la trachée              | windpipe
+# l'urètre                | urethra (m)
+# l'utérus                | womb (m)
+# le vagin                | vagina
+# la vésicule biliaire    | gallbladder
+# la vessie               | bladder
+# la vulve                | vulva

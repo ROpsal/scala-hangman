@@ -19,7 +19,7 @@ object Helpers {
   extension (line: String) def toWordEntry: Option[WordEntry] = {
     line.split('|') map (_.trim) match {
       case Array(word) if word.isEmpty => None
-      case Array(word) if word.startsWith("#") => None
+      case Array(word, _*) if word.startsWith("#") => None
       case Array(word, value) => Some(WordEntry(word, Some(value)))
       case Array(word) => Some(WordEntry(word, None))
     }
