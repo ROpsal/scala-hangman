@@ -1,58 +1,58 @@
 # Parties de la tête.
-la bouche	        | the mouth
-les cheveux	        | (m) the hair
+la bouche           | the mouth
+les cheveux         | (m) the hair
 les cheveux courts  | (m) short hair
 des cheveux bouclés | (m) curly hair
-le cou	            | the neck
+le cou              | the neck
 jusqu’au cou        | up to one’s neck
 la dent             | the tooth
-le front	        | the forehead
-ma gorge	        | my throat
+le front            | the forehead
+ma gorge            | my throat
 la joue	            | the cheek
-la langue	        | the tongue
-la lèvre	        | the lip
-la mâchoire	        | the jaw
-le menton	        | the chin
-le nez	            | the nose
-la nuque	        | nape of the neck
+la langue           | the tongue
+la lèvre            | the lip
+la mâchoire         | the jaw
+le menton           | the chin
+le nez              | the nose
+la nuque            | nape of the neck
 sur la nuque        | on the neck
 l’œil               | (m) the eye
-les yeux	        | (m) the eyes
+les yeux            | (m) the eyes
 l’oreille           | (f) the ear
-le sourcil	        | the eyebrow
-la tête	            | the head
-le visage	        | the face
+le sourcil          | the eyebrow
+la tête             | the head
+le visage           | the face
 
 # Le milieu du corps complet.
-le bras	         | the arm
-le cœur	         | the heart
-le coude	     | the elbow
-le derrière      | colloquial bottom, bum, behind
-le doigt	     | the finger
-le dos	         | the back
-l’épaule         | (f) the shoulder
-l’estomac        | (m) the stomach
-ma main	         | my hand
-ses mamelons     | (m) her/his nipples
-ma nombril       | my belly button
-la paume	     | the palm
-le poignet	     | the wrist
-la poitrine	     | the chest
-le pouce	     | the thumb
-le ventre	     | the belly
-donner le sein   | to breastfeed
+le bras             | the arm
+le cœur             | the heart
+le coude            | the elbow
+le derrière         | colloquial bottom, bum, behind
+le doigt            | the finger
+le dos              | the back
+l’épaule            | (f) the shoulder
+l’estomac           | (m) the stomach
+ma main             | my hand
+ses mamelons        | (m) her/his nipples
+ma nombril          | my belly button
+la paume            | the palm
+le poignet          | the wrist
+la poitrine         | the chest
+le pouce            | the thumb
+le ventre           | the belly
+donner le sein      | to breastfeed
 
 # Du haut de tes cuisses à ton petit orteil.
-la cheville	     | the ankle
-la cuisse	     | the thigh
-le doigt de pied | the toe
-la fesse	     | the buttock
-le genou	     | the knee
-le gros orteil   | the big toe
-la hanche	     | the hip
-la jambe	     | the leg
-l’ongle de pied  | the toenail
-l’orteil         | (m) the toe
-le pied	         | the foot
-le talon         | the heel
-le tibia	     | the shin
+la cheville         | the ankle
+la cuisse           | the thigh
+le doigt de pied    | the toe
+la fesse            | the buttock
+le genou            | the knee
+le gros orteil      | the big toe
+la hanche           | the hip
+la jambe            | the leg
+l’ongle de pied     | the toenail
+l’orteil            | (m) the toe
+le pied             | the foot
+le talon            | the heel
+le tibia            | the shin
