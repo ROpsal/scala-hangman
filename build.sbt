@@ -3,11 +3,11 @@ ThisBuild / organization := "io.ase"
 ThisBuild / scalacOptions ++= Seq(
   "-feature",
   "-Xfatal-warnings",
+  "-Ylightweight-lazy-vals",
   "-deprecation",
   "-explain",
   "-no-indent",
   "-unchecked",
-  "-language:implicitConversions",
   "-language:postfixOps",
   "-source:future"
 )

@@ -18,9 +18,8 @@ object Helpers {
   case class WordEntry(word: String, definition: Option[String])
   extension (line: String) def toWordEntry: Option[WordEntry] = {
     line.split('|') map (_.trim) match {
-      case Array(word) if word.isEmpty => None
-      case Array(word, _*) if word.startsWith("#") => None
-      case Array(word, value) => Some(WordEntry(word, Some(value)))
+      case Array(word, _*) if word.isEmpty || word.startsWith("#") => None
+      case Array(word, definition) => Some(WordEntry(word, Some(definition)))
       case Array(word) => Some(WordEntry(word, None))
     }
   }
@@ -35,7 +34,8 @@ object Helpers {
 
   // Return a random word from the passed list.
   extension (words: List[WordEntry]) def randomWord : WordEntry = {
-    words( scala.util.Random.nextInt(words.length) )
+    if words.nonEmpty then words( scala.util.Random.nextInt(words.length) )
+    else WordEntry("Pas plus de mots.", Some("No more words."))
   }
 
   // Split the word into individual letters.
@@ -44,14 +44,14 @@ object Helpers {
   // Join the list of characters together with a space in-between.
   extension (wordlist: List[Char]) def joinWord : String = wordlist.mkString(" ")
 
-  // French letters supported by the Hangman application.
+  // Letters supported by the French Hangman application.
   private val accentSet  : Set[Char] = Set('ç', 'é', 'â', 'ê', 'î', 'ô', 'û', 'à', 'è', 'ù', 'ë', 'ï', 'ü')
   private val ligatureSet: Set[Char] = Set('œ', 'æ')
   private val alphaSet   : Set[Char] = ('a' to 'z').toSet
-  val frenchSet : Set[Char] = accentSet ++ alphaSet ++ ligatureSet
+  val frenchSet : Set[Char] = alphaSet ++ accentSet ++ ligatureSet
 
   // Compares characters without regard to case or French accent marks.
-  val frCollator = Collator.getInstance(Locale.FRENCH)
+  private val frCollator = Collator.getInstance(Locale.FRENCH)
   frCollator.setStrength(Collator.PRIMARY)
   extension (l: Char) infix def =:= (r: Char): Boolean = 0 == frCollator.compare(l.toString, r.toString)
   extension (l: String) infix def =:= (r: String): Boolean = 0 == frCollator.compare(l, r)
@@ -80,15 +80,19 @@ object State {
   import Helpers.*
 
   case class Words(hangWord: WordEntry, words: List[WordEntry]) {
-    def nextWord: Words = {
+    lazy val nextWord: Words = {
       val newHangWord = this.words.randomWord
       Words(newHangWord, this.words.filterNot(_ == newHangWord))
     }
   }
 
+  object Words {
+    def apply(wordEntries: List[WordEntry]): Words = Words(WordEntry("PENDU", None), wordEntries).nextWord
+  }
+
   case class WinsAndLosses(wins: Int = 0, losses: Int = 0) {
-    def addLoss: WinsAndLosses = this.copy(losses = this.losses + 1)
-    def  addWin: WinsAndLosses = this.copy(wins = this.wins + 1)
+    lazy val addLoss: WinsAndLosses = this.copy(losses = this.losses + 1)
+    lazy val  addWin: WinsAndLosses = this.copy(wins = this.wins + 1)
   }
 
   enum Status {
@@ -180,11 +184,6 @@ object State {
         case s: String if s =:= "Exit" => (true, guess.finishGuess(winsAndLosses))
         case entry: String => {
           val (cnt, letter) = (1, entry.head)
-//        val (cnt, letter) = entry match {
-//          case oe if oe =:= "oe" => (2, '\u0153')
-//          case ae if ae =:= "ae" => (2, '\u00E6')
-//          case entry => (1, entry.head)
-//        }
           if ((cnt < entry.length) || !frenchSet.contains(letter.toLower)) {
             println(s"\tSorry, not a valid entry -> $entry")
             playGameR(guess)
@@ -215,11 +214,10 @@ object State {
 
   // List of words to guess from.
   val fname = if args.isEmpty then "src/resources/dictionaryWords.txt" else args(0)
-  val words = Words(WordEntry("HANGMAN", None), Helpers.wordList(fname)).nextWord
+  val words = Words(Helpers.wordList(fname))
 
   println("Welcome to the Hangman word guessing game.")
   println("Type 'Exit' to leave the game, 'New' for a new game.")
-//println("Type 'oe' for \u0153.  Type 'ae' for \u00E6.")
   println("Good luck!\n")
   enterGameR(words, WinsAndLosses())
   println("\nThank you for playing Scala Hangman!")

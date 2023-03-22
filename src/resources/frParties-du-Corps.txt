@@ -8,8 +8,7 @@ des cheveux bouclés     | curly hair (m)
 le cil                  | eyelash
 les cordes vocales      | vocal cords (f)
 le cou                  | neck
-jusqu'au cou            | up to one's neck
-la coude                | elbow
+jusqu'au cou            | up to one's neck (m)
 la dent                 | tooth
 la figure               | face
 le front                | the forehead
@@ -81,7 +80,7 @@ le gros doigt de pied   | big toe
 la hanche               | hip
 la jambe                | leg
 le mollet               | calf
-l'ongle de pied         | the toenail
+l'ongle de pied         | the toenail (m)
 mon petit orteil        | my little toe
 l'orteil                | the toe (m)
 le pied                 | foot
