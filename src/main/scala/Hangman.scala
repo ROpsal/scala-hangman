@@ -139,7 +139,7 @@ object State {
     private val whitespace  = List('\u0009', '\u0020')
     private val ligatures   = List('\u0153', '\u00E6')
     private val apostrophes = List('\u0027', '\u2019')
-    private val separators  = List(',', '.')
+    private val separators  = List(',', '.', '?')
     private val prefills = whitespace ++ ligatures ++ apostrophes ++ separators
     val nextRound: Words => Guess = words => {
       val hangList = words.hangWord.word.splitWord

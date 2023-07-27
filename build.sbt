@@ -1,9 +1,8 @@
-ThisBuild / scalaVersion := "3.2.2"
+ThisBuild / scalaVersion := "3.3.0-RC3"
 ThisBuild / organization := "io.ase"
 ThisBuild / scalacOptions ++= Seq(
   "-feature",
   "-Xfatal-warnings",
-  "-Ylightweight-lazy-vals",
   "-deprecation",
   "-explain",
   "-no-indent",

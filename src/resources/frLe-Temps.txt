@@ -23,7 +23,14 @@ Tornade	    | Tornado
 Venté	    | Windy
 Éclair	    | Lightning
 
-Il degele.              | It is thawing.
+Le ciel         | The sky
+Du ciel blue    | Blue skies
+Des éclaircies  | Some sunny breaks
+Des inondations | Some floods
+Des averses     | Some showers
+Passages nuageux| Scatter clouds or passing clouds
+
+Il dégelé.              | It is thawing.
 Il fait beau.           | It is nice.
 Il faisait beau.        | It was nice.
 Il fait chaud.          | It is warm.
@@ -35,34 +42,48 @@ Il fait froid.          | It is cold.
 Il fait lourd.          | It is close.
 Il fait mauvais.        | The weather is bad.
 Il fait soleil.         | It is sunny.
-Il gele.                | It freezes.
-Il grele.               | It is hailing.
+Il gelé.                | It freezes.
+Il grêle.               | It is hailing.
 Il ne fait pas froid.   | It’s not cold.
 Il neige.               | It's snowing.
 Il a neigé.             | It snowed.
 Il neigeait.            | It was snowing.
 Il pleut.               | It's raining.
 Il a plu.               | It rained.
+Il a plu hier.          | It rained yesterday.
 Il pleuvait.            | It was raining.
+Il va pleuvoir          | It's going to rain.
 Il tonne.               | It is thundering.
 Il y a de l'orage.      | There is a storm.
-Il y a des eclairs.     | There is lightning.
+Il y a des éclairs.     | There is lightning.
 Il y a du vent.         | It's windy.
+Il y avait du vent.     | It was windy.
+Il y aura du vent.      | It will be windy.
 
+Après la tempête.               | After the storm.
+Après le déluge, le calme.      | After the flood, the calm.
 C'est humide dehors.            | It’s wet outside.
 C'est humide.                   | It’s humid.
 C'est sec.                      | It’s dry.
 C'est une belle journée.        | It’s a lovely day.
+Il faisait soleil ce matin.     | It was sunny this morning.
+Il fera soleil ce weekend.      | It will be sunny this weekend.
 Il fait bon dehors.             | It’s nice outside.
 Il fait très chaud.             | It’s very hot.
 Il fait un temps de chien.      | It’s weather fit for a dog.
 Il fait un temps magnifique.    | It’s a gorgeous day.
 Il n’y a pas un nuage en vue.   | Not one cloud in the sky.
-Il pleut des cordes.            | It’s raining ropes (cats & dogs).
+Il pleut des cordes.            | It’s raining cats & dogs, (lit. ropes).
 Il pleut à verse.               | It’s pouring.
 La journée est pluvieuse.       | It’s a rainy day.
 La pluie tombe à torrent.       | It’s pouring.
 Le temps s’améliore.            | The weather is getting better.
+On est trempés.                 | We're soaked.
 
-La température est en dessous de zéro.  | It’s below freezing.
-Quel temps fait-il aujourd'hui?         | What's the weather today?
+La température est en dessous de zéro.          | It’s below freezing.
+Le temps était vraiment mauvais.                | The weather was really bad.
+Quel temps fait-il aujourd'hui?                 | What's the weather today?
+Il fait quel temps aujourd'hui?                 | What's the weather like today?
+Il fait soleil mais la brise est fraîche.       | It’s sunny but with a cool breeze.
+Il va pleuvoir la semaine prochaine.            | It will rain next week.
+Quelle température va-t-il faire aujourd’hui?   | What temperature is it going to reach today?
