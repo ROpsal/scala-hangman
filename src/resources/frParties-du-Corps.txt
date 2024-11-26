@@ -52,6 +52,7 @@ ma main                 | my hand
 le mamelon              | nipple
 ses mamelons            | her/his nipples (m)
 ma nombril              | my belly button
+les omoplates           | shoulder blades (f)
 l'ongle                 | fingernail (m)
 la paume                | palm
 le poignet              | wrist

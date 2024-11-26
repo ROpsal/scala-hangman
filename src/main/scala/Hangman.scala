@@ -16,7 +16,7 @@ import java.util.Locale
 object Helpers {
 
   case class WordEntry(word: String, definition: Option[String])
-  extension (line: String) def toWordEntry: Option[WordEntry] = {
+  extension (line: String) private def toWordEntry: Option[WordEntry] = {
     line.split('|') map (_.trim) match {
       case Array(word, _*) if word.isEmpty || word.startsWith("#") => None
       case Array(word, definition) => Some(WordEntry(word, Some(definition)))
@@ -129,7 +129,8 @@ object State {
       guessList.zip(hangList).map((g, h) => if (letter =:= h) h else g)
     }
 
-    extension (letters: List[Char]) private def prefillNons(hangList: List[Char], guessList: List[Char]): List[Char] = {
+    extension (letters: List[Char]) @tailrec
+    private def prefillNons(hangList: List[Char], guessList: List[Char]): List[Char] = {
       letters match {
         case Nil => guessList
         case letter::rest => rest.prefillNons(hangList, letter.applyGuess(hangList, guessList))

@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "3.3.0-RC3"
+ThisBuild / scalaVersion := "3.3.4"
 ThisBuild / organization := "io.ase"
 ThisBuild / scalacOptions ++= Seq(
   "-feature",
